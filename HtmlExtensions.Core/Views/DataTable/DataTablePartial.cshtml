@@ -1,0 +1,27 @@
+﻿@using HtmlExtensions.Core.BaseExtension
+@using HtmlExtensions.Core.DataGrid
+@model IQueryable<HtmlExtensions.Core.Controllers.Tests>
+@{
+    Html.MarkUP().DataGrid(settings =>
+    {
+        settings.KeyField = "Test";
+        settings.CallbackRoute = Url.Action("DataTablePartial");
+        settings.EditCallbackRoute = Url.Action("EditDataTablePartial");
+        settings.EnableCommandColumn = true;
+        settings.EnableEdit = true;
+        settings.EnableDelete = true;
+        settings.Name = "DataGrid1";
+
+        settings.Columns.Add(col =>
+        {
+            col.Name = "Test";
+            col.Caption = "Test";
+        });
+        settings.SetTemplateContent(async content =>
+        {
+            string res = content.Test;
+            Html.MarkUP().WriteLine(await Component.InvokeAsync("DataTable", new {test = res}));
+        });
+
+    }).BindToEF(Model).Render();
+}
