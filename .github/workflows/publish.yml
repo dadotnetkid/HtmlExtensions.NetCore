@@ -8,7 +8,7 @@ jobs:
     name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: brandedoutcast/publish-nuget@v2.5.5
 
       # - name: Setup dotnet
       #   uses: actions/setup-dotnet@v1
@@ -48,4 +48,4 @@ jobs:
           # NUGET_SOURCE: https://api.nuget.org
 
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-           INCLUDE_SYMBOLS: false
+          # INCLUDE_SYMBOLS: false
