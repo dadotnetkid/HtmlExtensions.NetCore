@@ -1,0 +1,19 @@
+﻿@using HtmlExtensions.Core.BaseExtension
+@using HtmlExtensions.Core.Editors
+@model Customers
+@{
+    Html.MarkUP().TextBox(setting =>
+    {
+        setting.Name = "CompanyName";
+        setting.DisplayProperties.Label = "Company Name";
+
+    }).Bind(Model?.CompanyName).Render();
+}
+@{
+    Html.MarkUP().TextBox(setting =>
+    {
+        setting.Name = "Contact Name";
+        setting.DisplayProperties.Label = "Contact Name";
+
+    }).Bind(Model?.ContactName).Render();
+}

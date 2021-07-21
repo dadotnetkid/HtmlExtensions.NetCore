@@ -9,7 +9,7 @@ namespace HtmlExtensions.Core.BaseExtension
 {
     public class BaseSetting
     {
-
+        public IServiceProvider RequestServices => HttpContext.RequestServices;
         public string Name { get; set; }
         public MarkUP MarkUP { get; set; }
         public HttpContext HttpContext => MarkUP?.HtmlHelper.ViewContext.HttpContext;

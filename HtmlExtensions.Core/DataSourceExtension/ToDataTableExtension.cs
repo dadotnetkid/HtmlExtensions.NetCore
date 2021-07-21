@@ -36,8 +36,9 @@ namespace HtmlExtensions.Core.DataSourceExtension
         }
         internal static IQueryable Paginate(this IQueryable list, HttpContext httpContext)
         {
-            var start = httpContext.Request.Query["start"].Any() ? Convert.ToInt32(httpContext.Request.Query["start"][0]) : 10;
-            return list.Take(start + 10).Skip(start);
+            var length = httpContext.Request.Query["length"].Any() ? Convert.ToInt32(httpContext.Request.Query["length"][0]) : 10;
+            var start = httpContext.Request.Query["start"].Any() ? Convert.ToInt32(httpContext.Request.Query["start"][0]) : length;
+            return list.Take(start + length).Skip(start);
         }
         internal static IQueryable ListToDataTable(IQueryable list, string term)
         {
@@ -61,7 +62,7 @@ namespace HtmlExtensions.Core.DataSourceExtension
                 string filterString = string.Join(" || ", fields.Select(x => $"{x.Name}.Contains(@0)"));
                 if (string.IsNullOrEmpty(term))
                     return list;
-                return list.AsQueryable().Where(filterString, term);
+                return list.Where(filterString, term);
             }
 
 

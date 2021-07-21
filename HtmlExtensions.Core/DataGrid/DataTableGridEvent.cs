@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using HtmlExtensions.Core.ScriptLogger;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-
+using System.Linq.Dynamic.Core;
 namespace HtmlExtensions.Core.DataGrid
 {
     public class DataTableGridEvent
     {
         private readonly DataTableGridSetting _setting;
+        private readonly IAlertLogger _alertLogger;
 
         public DataTableGridEvent(DataTableGridSetting setting)
         {
             _setting = setting;
+            _alertLogger = setting.HttpContext.RequestServices.GetRequiredService<IAlertLogger>();
         }
 
         public Action RenderEditorClickEvent => OnEditorEditClick;
@@ -94,34 +98,35 @@ namespace HtmlExtensions.Core.DataGrid
                 ;
         }
 
-        public bool IsEditing(DataTableGridSetting setting, DataTableGridEvent events)
+        public bool IsUpdate => GetIsUpdate();
+        public bool IsEditing => GetIsEditing();
+
+        private bool GetIsEditing()
         {
-
-            try
-            {
-                var isEditing = setting.HttpContext.Request.Query["IsEditing"];
-                var addNew = setting.HttpContext.Request.Query["AddNew"];
-                var isUpdate = setting.HttpContext.Request.Query["IsUpdate"];
-                Debug.WriteLine("editing" + isEditing.FirstOrDefault());
-
-                if (isEditing.Any())
-                {
-                    var key = setting.HttpContext.Request.Form[setting.KeyField][0];
-                    dynamic dynamicObj = JsonConvert.DeserializeObject("{'" + setting.KeyField + "':'" + key + "'}");
-                    setting.TemplateContent(dynamicObj);
-                }
-
-
-                if (isEditing.Any() || addNew.Any() || isUpdate.Any())
-                {
-                    return true;
-                }
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return false;
+            var isEditing = _setting.HttpContext.Request.Query["IsEditing"];
+            return isEditing.Any();
         }
+
+        private bool GetIsUpdate()
+        {
+            var isUpdate = _setting.HttpContext.Request.Query["IsUpdate"];
+            return isUpdate.Any();
+        }
+
+        public void RenderTemplateContent()
+        {
+            if (_setting.TemplateContent == null)
+            {
+                _alertLogger.Write("No edit template created");
+                return;
+            }
+            var key = _setting.HttpContext.Request.Form[_setting.KeyField][0];
+            dynamic dynamicObj = JsonConvert.DeserializeObject("{'" + _setting.KeyField + "':'" + key + "'}");
+            RenderCreateUpdateChangesPrototype.Invoke();
+            dynamic obj=_setting.IQueryableSource.Where(_setting.KeyField + "==@0", key).FirstOrDefault();
+            _setting.TemplateContent(obj);
+        }
+
+
     }
 }

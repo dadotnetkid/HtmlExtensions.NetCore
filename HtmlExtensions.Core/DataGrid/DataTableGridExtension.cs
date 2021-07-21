@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HtmlExtensions.Core.BaseExtension;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HtmlExtensions.Core.DataGrid
 {
@@ -24,7 +25,7 @@ namespace HtmlExtensions.Core.DataGrid
 
         public static void Render(this DataTableGridSetting setting)
         {
-            var grid = new DataTableGrid();
+            var grid = setting.HttpContext.RequestServices.GetRequiredService<IDataTableGrid>();
             grid.Render(setting);
         }
     }
@@ -35,6 +36,7 @@ namespace HtmlExtensions.Core.DataGrid
         internal IQueryable IQueryableSource { get; set; }
         public DataTableColumnCollection Columns { get; set; } = new();
         public string CallbackRoute { get; set; }
+        public bool EnableAdd { get; set; }
         public bool EnableEdit { get; set; }
         public bool EnableDelete { get; set; }
         public bool EnableCommandColumn { get; set; }
@@ -43,17 +45,27 @@ namespace HtmlExtensions.Core.DataGrid
 
         public void SetTemplateContent(Action<dynamic> content)
         {
-          this.TemplateContent = content;
+            this.TemplateContent = content;
         }
         internal Action<dynamic> TemplateContent { get; set; }
+        public PageDetails PageDetails { get; set; } = new();
+    }
+
+    public class PageDetails
+    {
+        public int PageSize { get; set; } = 10;
     }
 
     public class DataTableColumns
     {
         public string Name { get; set; }
         public string Caption { get; set; }
+        public DataTableColumnProperties Properties { get; set; } = new();
     }
-
+    public class DataTableColumnProperties
+    {
+        public string Width { get; set; }
+    }
     public class DataTableColumnCollection
     {
         public List<DataTableColumns> DataTableColumns { get; set; } = new();

@@ -10,7 +10,7 @@ namespace HtmlExtensions.Core.Controllers
     {
         public FileStreamResult Index(string iconName)
         {
-            var assembly = typeof(Startup).Assembly;
+            var assembly = typeof(HtmlExtensionCore).Assembly;
 
             var res = assembly.GetManifestResourceNames().ToList();
             var ass = res.FirstOrDefault(x => x.Contains(iconName));

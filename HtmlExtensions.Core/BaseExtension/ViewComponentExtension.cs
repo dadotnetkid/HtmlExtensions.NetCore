@@ -10,8 +10,7 @@ namespace HtmlExtensions.Core.BaseExtension
     {
         public static  void WriteLine(this MarkUP markUP, IHtmlContent content)
         {
-            markUP.HtmlHelper.ViewContext.Writer.WriteLine(content);
-
+            markUP.HtmlHelper.ViewContext.Writer.Write(content);
         }
     }
 }
