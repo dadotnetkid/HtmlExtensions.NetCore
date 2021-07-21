@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET Core @ Latest
         uses: actions/setup-dotnet@v1
         with:
-          source-url: https://www.nuget.org/api/v2/package
+          source-url: https://nuget.pkg.github.com/<organization>/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}        
           
