@@ -14,7 +14,6 @@ namespace HtmlExtensions.Core.Controllers
 
             var res = assembly.GetManifestResourceNames().ToList();
             var ass = res.FirstOrDefault(x => x.Contains(iconName));
-            ;
             var stream = assembly.GetManifestResourceStream(ass);
             return new FileStreamResult(stream, "image/png");
         }

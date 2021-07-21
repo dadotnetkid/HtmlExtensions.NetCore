@@ -12,22 +12,22 @@
     <Content Remove="wwwroot\images\icons\addicon32.png" />
     <Content Remove="wwwroot\images\icons\deleteicon.png" />
     <Content Remove="wwwroot\images\icons\editicon.png" />
+    <Content Remove="wwwroot\lib\datatable\datatables.css" />
+    <Content Remove="wwwroot\lib\datatable\datatables.js" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\images\icons\addicon32.png" />
     <EmbeddedResource Include="wwwroot\images\icons\deleteicon.png" />
     <EmbeddedResource Include="wwwroot\images\icons\editicon.png" />
+    <EmbeddedResource Include="wwwroot\lib\datatable\datatables.css" />
+    <EmbeddedResource Include="wwwroot\lib\datatable\datatables.js" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\datatable\" />
   </ItemGroup>
 
 </Project>
