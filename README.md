@@ -1,14 +1,19 @@
 # HtmlExtensions.NetCore
+[Nuget Package](https://www.nuget.org/packages/HtmlExtensions.Core/)
+```
+Install-Package HtmlExtensions.Core -Version 
+```
+```
+In startup DI register htmlextension and other components
+ services.RegisterHtmlExtensionCore().UsePopUpModal().UseTextBoxEditor();
+```
 ```
 @{
         Html.MarkUP().GetStyleSheet(new StyleSheet() { Extension = Extension.DataTableGrid });
         Html.MarkUP().GetScripts(new Scripts() { Extension = Extension.DataTableGrid });
 }
 ```
-[Nuget Package](https://www.nuget.org/packages/HtmlExtensions.Core/)
-```
-Install-Package HtmlExtensions.Core -Version 1.0.0
-```
+
 ```
 Create Partial View Containing datagrid
 Create Action in Controller which same name with the partial view you've created
