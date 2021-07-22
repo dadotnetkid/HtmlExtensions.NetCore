@@ -64,3 +64,32 @@ using HtmlExtensions.Core.BaseExtension
     }).BindToEF(Model).Render();
 }
 ```
+```
+        Html.MarkUP().Modal(modalSettings =>
+            {
+                modalSettings.Name = "modal";
+                modalSettings.ShowOnLoad = true;
+                modalSettings.CloseOnEscape = true;
+                modalSettings.Modal = true;
+                modalSettings.HeaderText = content?.ContactTitle;
+                modalSettings.Alignment.Vertical = ModalAlignment.VerticallyCenter;
+                modalSettings.DisplaySetting.Size = ModalSize.Medium ;
+                modalSettings.AllowDragging = true;
+                modalSettings.ClientSideEvents.OnCloseEvent = "alert('asf')";
+                modalSettings.SetTemplateContent(async() =>
+                {
+                   //
+                  you can use partial or add content using viewcontext.writer.writeline()
+                   or directly call the other editors like 
+                   Html.MarkUP().TextBox(setting =>
+                     {
+                         setting.Name = "Contact Name";
+                         setting.DisplayProperties.Label = "Contact Name";
+
+                     }).Bind(Model?.ContactName).Render();
+                     //select editors is on the way
+                     // also the buttons
+                });
+            }).Render();
+```
+
