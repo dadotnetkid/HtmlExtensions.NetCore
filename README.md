@@ -13,7 +13,7 @@ In startup DI register htmlextension and other components
         Html.MarkUP().GetScripts(new Scripts() { Extension = Extension.DataTableGrid });
 }
 ```
-##Data Table Grid
+## Data Table Grid
 ```
 Create Partial View Containing datagrid
 Create Action in Controller which same name with the partial view you've created
