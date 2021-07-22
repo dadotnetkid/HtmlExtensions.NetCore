@@ -64,7 +64,7 @@ using HtmlExtensions.Core.BaseExtension
     }).BindToEF(Model).Render();
 }
 ```
-##Modal
+## Modal
 ```
         Html.MarkUP().Modal(modalSettings =>
             {
@@ -93,7 +93,7 @@ using HtmlExtensions.Core.BaseExtension
                 });
             }).Render();
 ```
-##TexbBox
+## TexbBox
 ```
                   Html.MarkUP().TextBox(setting =>
                      {
