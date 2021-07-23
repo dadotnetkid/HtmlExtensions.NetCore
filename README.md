@@ -35,6 +35,9 @@ using HtmlExtensions.Core.BaseExtension
     {
         settings.Name = "datagrid1";
         settings.CallbackRoute = Url.Action("DataTablePartial");/// callbackroute to the server on pagination,searching, sorting and on editing and on adding 
+        settings.EditCallbackRoute = Url.Action("EditDataTablePartial");
+        settings.DeleteCallbackRoute = Url.Action("DeleteDataTablePartial");
+        settings.AddNewCallbackRoute = Url.Action("AddNewDataTablePartial");
         settings.EnableEdit = true;
         settings.EnableAdd = true;
         settings.EnableDelete = true;
