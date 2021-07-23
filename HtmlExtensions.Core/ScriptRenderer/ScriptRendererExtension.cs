@@ -28,6 +28,7 @@ namespace HtmlExtensions.Core.ScriptRenderer
             {
                 mark.Writer.WriteLine($"<link href='{url.Action("index","stylesheet",new{ styleSheetName =i.Extension.StyleSheet})}' rel='stylesheet'/>");
             }
+            mark.Writer.WriteLine($"<link href='{url.Action("index", "stylesheet", new { styleSheetName = "site.css"})}' rel='stylesheet'/>");
         }
     }
 

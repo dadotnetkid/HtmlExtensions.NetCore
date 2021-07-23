@@ -34,6 +34,7 @@
                 Html.MarkUP().TextBox(txtSettings =>
                 {
                     txtSettings.Name = "sdef";
+                    txtSettings.DisplayProperties.Label = "asdf";
                 }).Render();
         });
     }).BindToEF(Model).Render();

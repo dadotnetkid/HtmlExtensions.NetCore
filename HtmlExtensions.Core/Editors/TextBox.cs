@@ -16,7 +16,7 @@ namespace HtmlExtensions.Core.Editors
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("<div class='form-inline'>")
                 .AppendLine("<label for='"+setting.Name+$"'>{setting.DisplayProperties.Label}</label>")
-                .AppendLine("<input type='"+(setting.IsPassword ? "password" : "text") +$"' class='form-control markUP-editor' value='"+setting.Value+"' name='"+setting.Name+"' id='"+setting.Name+"' style='margin-left:10px'/>")
+                .AppendLine("<input type='"+(setting.IsPassword ? "password" : "text") +$"' class='form-control markUP-editor' value='"+setting.Value+"' name='"+setting.Name+"' id='"+setting.Name+"' />")
                 .AppendLine("</div>")
                 ;
             setting.Writer.WriteLine(sb.ToString());
