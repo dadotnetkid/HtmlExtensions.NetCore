@@ -11,6 +11,10 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/dadotnetkid/HtmlExtensions.NetCore</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dadotnetkid/HtmlExtensions.NetCore</RepositoryUrl>
+    <Authors>Mark Christopher</Authors>
+    <Company>Mark Christopher</Company>
+    <Copyright>2021</Copyright>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
