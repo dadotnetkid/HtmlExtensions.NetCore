@@ -1,48 +1,40 @@
 ﻿@using HtmlExtensions.Core.BaseExtension
 @using HtmlExtensions.Core.DataGrid
+@using HtmlExtensions.Core.Editors
 @using HtmlExtensions.Core.Modal
 @model IQueryable<Customers>
 @{
-    Html.MarkUP().DataGrid(settings =>
-    {
-        settings.Name = "datagrid1";
-        settings.CallbackRoute = Url.Action("DataTablePartial");
-        settings.EnableEdit = true;
-        settings.EnableAdd = true;
-        settings.EnableDelete = true;
-        settings.EnableCommandColumn = true;
-        settings.KeyField = "Id";
-        settings.PageDetails.PageSize = 5;
+        Html.MarkUP().DataGrid(settings =>
+        {
+            settings.Name = "datagrid1";
+            settings.CallbackRoute = Url.Action("DataTablePartial");
+            settings.EditCallbackRoute = Url.Action("EditDataTablePartial");
+            settings.DeleteCallbackRoute = Url.Action("DeleteDataTablePartial");
+            settings.AddNewCallbackRoute = Url.Action("AddNewDataTablePartial");
+            settings.EnableEdit = true;
+            settings.EnableAdd = true;
+            settings.EnableDelete = true;
+            settings.EnableCommandColumn = true;
+            settings.KeyField = "Id";
+            settings.PageDetails.PageSize = 5;
 
-        settings.Columns.Add(col =>
-        {
-            col.Caption = "Customer Id";
-            col.Name = "CustomerID";
-            col.Properties.Width = "100px";
-        });
-        settings.Columns.Add(col =>
-        {
-            col.Caption = "Contact Name";
-            col.Name = "ContactName";
-        });
-        settings.SetTemplateContent(content =>
-        {
-            Html.MarkUP().Modal(modalSettings =>
+            settings.Columns.Add(col =>
             {
-                modalSettings.Name = "modal";
-                modalSettings.ShowOnLoad = true;
-                modalSettings.CloseOnEscape = true;
-                modalSettings.Modal = true;
-                modalSettings.HeaderText = content?.ContactTitle;
-                modalSettings.Alignment.Vertical = ModalAlignment.VerticallyCenter;
-                modalSettings.DisplaySetting.Size = ModalSize.Medium ;
-                modalSettings.AllowDragging = true;
-                modalSettings.ClientSideEvents.OnCloseEvent = "alert('asf')";
-                modalSettings.SetTemplateContent(async() =>
+                col.Caption = "Customer Id";
+                col.Name = "CustomerID";
+                col.Properties.Width = "100px";
+            });
+            settings.Columns.Add(col =>
+            {
+                col.Caption = "Contact Name";
+                col.Name = "ContactName";
+            });
+            settings.SetTemplateContent(content =>
+            {
+                Html.MarkUP().TextBox(txtSettings =>
                 {
-                    await Html.RenderPartialAsync("DataTableEditorPartial", content as Customers);
-                });
-            }).Render();
+                    txtSettings.Name = "sdef";
+                }).Render();
         });
     }).BindToEF(Model).Render();
 }

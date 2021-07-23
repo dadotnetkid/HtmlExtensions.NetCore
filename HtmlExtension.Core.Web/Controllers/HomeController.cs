@@ -29,5 +29,21 @@ namespace HtmlExtension.Core.Web.Controllers
         {
             return PartialView(_db.Customers);
         }
+
+     
+        public IActionResult EditDataTablePartial()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IActionResult DeleteDataTablePartial(int Id)
+        {
+            return PartialView("DataTablePartial", _db.Customers);
+        }
+
+        public IActionResult AddNewDataTablePartial()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

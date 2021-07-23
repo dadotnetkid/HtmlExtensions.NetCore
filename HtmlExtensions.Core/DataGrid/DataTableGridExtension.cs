@@ -36,12 +36,14 @@ namespace HtmlExtensions.Core.DataGrid
         internal IQueryable IQueryableSource { get; set; }
         public DataTableColumnCollection Columns { get; set; } = new();
         public string CallbackRoute { get; set; }
+        public string EditCallbackRoute { get; set; }
+        public string DeleteCallbackRoute { get; set; }
+        public string AddNewCallbackRoute { get; set; }
         public bool EnableAdd { get; set; }
         public bool EnableEdit { get; set; }
         public bool EnableDelete { get; set; }
         public bool EnableCommandColumn { get; set; }
-        public string EditCallbackRoute { get; set; }
-        public string AddNewCallbackRoute { get; set; }
+        
 
         public void SetTemplateContent(Action<dynamic> content)
         {
@@ -49,6 +51,7 @@ namespace HtmlExtensions.Core.DataGrid
         }
         internal Action<dynamic> TemplateContent { get; set; }
         public PageDetails PageDetails { get; set; } = new();
+        
     }
 
     public class PageDetails

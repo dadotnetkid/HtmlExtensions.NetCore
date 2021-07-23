@@ -43,16 +43,18 @@ namespace HtmlExtensions.Core.DataGrid
                 RenderDataSource(setting);
             }
            
-            else if (events.IsEditing)
+            else if (events.IsEditing || events.AddNew)
             {
                 events.RenderTemplateContent();
             }
+           
             else
             {
                 _dataTableGridHtmlRender.RenderHtml(setting);
                 _dataTableGridScriptRender.RenderScript(setting);
-
+                events.RenderEditorAddClickEvent.Invoke();
                 events.RenderEditorClickEvent.Invoke();
+                events.RenderEditorDeleteClickEvent.Invoke();
             }
         }
 
